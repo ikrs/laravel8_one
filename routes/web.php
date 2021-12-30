@@ -14,5 +14,28 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+//    return view('welcome');
+    return 'Home page';
+})
+    ->name('home.index');
+
+Route::get('/contact', function () {
+    return 'Contact';
+})
+    ->name('home.contact');
+
+// Route with required params
+Route::get('/posts/{id}', function ($id) {
+    return 'Blog post ' . $id;
+})
+    // defined globally in app/Providers/RouteServiceProvider
+//    ->where([
+//    'id' => '[0-9]+', // Parameter value defined as number
+//    ])
+    ->name('posts.show');
+
+// Route with optional params
+Route::get('/recent-posts/{days_ago?}', function ($daysAgo = 20) {
+    return 'Posts from ' . $daysAgo . ' days ago';
+})
+    ->name('posts.recent.index');

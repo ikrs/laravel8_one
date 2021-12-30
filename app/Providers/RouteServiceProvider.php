@@ -47,6 +47,9 @@ class RouteServiceProvider extends ServiceProvider
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
         });
+
+        // Globally set that every time there is id value in controller it must be number
+        Route::pattern('id', '[0-9]+');
     }
 
     /**
